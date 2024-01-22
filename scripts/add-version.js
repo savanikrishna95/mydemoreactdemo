@@ -13,9 +13,9 @@ function appendVersion(filePath, version) {
 const version = Date.now(); // Use a timestamp as the version
 
 // Add version to CSS files
-appendVersion(path.resolve(__dirname, '../build/static/css/main.[contenthash].css'), version);
+appendVersion(path.resolve(__dirname, '../build/static/css/main.f855e6bc.css'), version);
 
 // Add version to JS files
-appendVersion(path.resolve(__dirname, '../build/static/js/main.[contenthash].js'), version);
+appendVersion(path.resolve(__dirname, '../build/static/js/main.5dc3cf17.js'), version);
 
 console.log(`Version ${version} added to CSS and JS files.`);
