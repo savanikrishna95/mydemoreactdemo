@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-serviceWorker.unregister();
+
 
 root.render(
   <React.StrictMode>
