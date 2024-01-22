@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/mydemoreactdemo/static/css/main.f855e6bc.css",
-    "main.js": "/mydemoreactdemo/static/js/main.2621022c.js",
+    "main.js": "/mydemoreactdemo/static/js/main.1862233e.js",
     "static/js/787.c9f1fc24.chunk.js": "/mydemoreactdemo/static/js/787.c9f1fc24.chunk.js",
     "static/media/logo.svg": "/mydemoreactdemo/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/mydemoreactdemo/index.html",
     "main.f855e6bc.css.map": "/mydemoreactdemo/static/css/main.f855e6bc.css.map",
-    "main.2621022c.js.map": "/mydemoreactdemo/static/js/main.2621022c.js.map",
+    "main.1862233e.js.map": "/mydemoreactdemo/static/js/main.1862233e.js.map",
     "787.c9f1fc24.chunk.js.map": "/mydemoreactdemo/static/js/787.c9f1fc24.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.2621022c.js"
+    "static/js/main.1862233e.js"
   ]
 }
