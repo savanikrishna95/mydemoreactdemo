@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { AppContainer } from 'react-hot-loader';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -9,8 +10,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 root.render(
+
   <React.StrictMode>
+      <AppContainer>
     <App />
+    </AppContainer>
   </React.StrictMode>
 );
 
