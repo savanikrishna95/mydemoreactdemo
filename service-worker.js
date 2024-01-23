@@ -3,13 +3,31 @@
 const cacheName = 'my-app-cache-v1';
 const cacheFiles = ['/', '/index.html', '/static/css/main.css', '/static/js/main.js'];
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(cacheName).then(cache => {
-      return cache.addAll(cacheFiles);
-    })
-  );
-});
+// self.addEventListener('install', event => {
+//   event.waitUntil(
+//     caches.open(cacheName).then(cache => {
+//       return cache.addAll(cacheFiles);
+//     })
+//   );
+// });
+
+
+self.addEventListener("install", (event) => {
+    console.log("Service Worker : Installed!")
+
+    event.waitUntil(
+        
+        (async() => {
+            try {
+                cache_obj = await caches.open(cache)
+                cache_obj.addAll(caching_files)
+            }
+            catch{
+                console.log("error occured while caching...")
+            }
+        })()
+    )
+} )
 
 self.addEventListener('fetch', event => {
   event.respondWith(
@@ -28,7 +46,9 @@ self.addEventListener('activate', event => {
             return caches.delete(cache);
           }
           return null;
-        })
+        }).catch(error => {
+            console.error(`Caching failed for ${url}:`, error);
+          })
       );
     })
   );
