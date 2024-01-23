@@ -5,7 +5,7 @@
 // public/service-worker.js../build/static/css/main.f855e6bc.css
 
 const cacheName = 'my-app-cache-v1';
-const cacheFiles = ['/', './index.html', '../build/static/css/main.f855e6bc.css', '../build/static/js/main.66c5ac00.js'];
+const cacheFiles = ['/', './index.html', '../build/static/css/main.f855e6bc.css', '../build/static/js/main.1666eda7.js'];
 
 self.addEventListener('install', event => {
   event.waitUntil(
