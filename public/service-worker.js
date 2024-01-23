@@ -2,6 +2,7 @@
 
 
 // public/service-worker.js
+// public/service-worker.js
 
 const cacheName = 'my-app-cache-v1';
 const cacheFiles = ['/', '/index.html', '/static/css/main.css', '/static/js/main.js'];
@@ -9,13 +10,27 @@ const cacheFiles = ['/', '/index.html', '/static/css/main.css', '/static/js/main
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(cacheName).then(cache => {
-      return cache.addAll(cacheFiles);
+      return Promise.all(
+        cacheFiles.map(url => {
+          return fetch(url)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`Failed to fetch: ${url}`);
+              }
+              return cache.put(url, response);
+            })
+            .catch(error => {
+              console.error(`Caching failed for ${url}:`, error);
+              // Optionally, you can choose to skip this error and continue with other resources
+              // return Promise.resolve();
+            });
+        })
+      );
     })
   );
 });
 
 self.addEventListener('fetch', event => {
-    console.log("fetch")
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request);
@@ -24,7 +39,7 @@ self.addEventListener('fetch', event => {
 });
 
 self.addEventListener('activate', event => {
-    console.log("activate")
+    console.log("Activate")
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
@@ -38,16 +53,15 @@ self.addEventListener('activate', event => {
     })
   );
 
-  // Ensure that the new service worker takes control of the page immediately
   self.clients.claim();
 });
-
 
 
 
 // Listen for a 'reload' message from the client and reload the page
 self.addEventListener('message', event => {
   if (event.data === 'reload') {
+    console.log("Activatessss")
     self.skipWaiting();
     self.clients.claim();
     self.clients.matchAll().then(clients => {
