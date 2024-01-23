@@ -18,6 +18,13 @@ root.render(
   </React.StrictMode>
 );
 
+navigator.serviceWorker.addEventListener('message', event => {
+  if (event.data === 'reload') {
+    window.location.reload(true);
+  }
+});
+
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('../mydemoreactdemo/service-worker.js')

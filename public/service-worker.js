@@ -61,6 +61,7 @@ self.addEventListener('activate', event => {
     self.clients.matchAll().then(clients => {
       clients.forEach(client => {
         if (client instanceof WindowClient) {
+            client.postMessage('reload')
           client.navigate(client.url);
           client.focus();
         }
@@ -68,9 +69,14 @@ self.addEventListener('activate', event => {
     });
   }
 
+  
+
   // Alternatively, you can use the following to reload the page
   // self.clients.matchAll().then(clients => clients.forEach(client => client.postMessage('reload')));
 });
+
+
+
 
 // Listen for a 'reload' message from the client and reload the page
 self.addEventListener('message', event => {
