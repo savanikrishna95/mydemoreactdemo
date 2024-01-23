@@ -9,7 +9,7 @@ const cacheName = 'my-app-cache-v1';
 // Example: Replace '[contenthash]' with the actual content hash of your main.css file
 const mainCssContentHash = '[contenthash]'; 
 
-const cacheFiles = ['/', './index.html', `/mydemoreactdemo/blob/gh-pages/static/css/main.${mainCssContentHash}.css`, '/mydemoreactdemo/blob/gh-pages/static/js/main.js'];
+const cacheFiles = ['/', './index.html', `/mydemoreactdemo/blob/gh-pages/static/css/main.${mainCssContentHash}.css`, `/mydemoreactdemo/blob/gh-pages/static/js/main.${mainCssContentHash}.js`];
 
 self.addEventListener('install', event => {
   event.waitUntil(
