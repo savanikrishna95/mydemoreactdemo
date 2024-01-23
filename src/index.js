@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import { AppContainer } from 'react-hot-loader';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -12,19 +12,14 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
   <React.StrictMode>
-      <AppContainer>
+
     <App />
-    </AppContainer>
+
   </React.StrictMode>
 );
 
 
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
-    root.render(NextApp);
-  });
-}
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
