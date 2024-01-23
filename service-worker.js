@@ -19,20 +19,46 @@ self.addEventListener('fetch', event => {
   );
 });
 
-// public/service-worker.js
-
 self.addEventListener('activate', event => {
-    event.waitUntil(
-      caches.keys().then(cacheNames => {
-        return Promise.all(
-          cacheNames.map(cache => {
-            if (cache !== cacheName) {
-              return caches.delete(cache);
-            }
-            return null;
-          })
-        );
-      })
-    );
-  });
-  
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cache => {
+          if (cache !== cacheName) {
+            return caches.delete(cache);
+          }
+          return null;
+        })
+      );
+    })
+  );
+
+  // Claim clients to make sure that the active service worker takes control of the page immediately
+  self.clients.claim();
+
+  // Reload the page after activating the service worker
+  if (self.clients && self.clients.matchAll) {
+    self.clients.matchAll().then(clients => {
+      clients.forEach(client => {
+        if (client instanceof WindowClient) {
+          client.navigate(client.url);
+          client.focus();
+        }
+      });
+    });
+  }
+
+  // Alternatively, you can use the following to reload the page
+  // self.clients.matchAll().then(clients => clients.forEach(client => client.postMessage('reload')));
+});
+
+// Listen for a 'reload' message from the client and reload the page
+self.addEventListener('message', event => {
+  if (event.data === 'reload') {
+    self.skipWaiting();
+    self.clients.claim();
+    self.clients.matchAll().then(clients => {
+      clients.forEach(client => client.postMessage('reload'));
+    });
+  }
+});
